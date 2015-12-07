@@ -6,4 +6,9 @@
     <string name="title_activity_splash">SplashActivity</string>
     <string name="hello_splash">Welcome to</string>
     <string name="splash_splash">the Personal Restaurant Guide</string>
+    <string name="view">View Restaurants</string>
+    <string name="add">Add Restaurant</string>
+    <string name="edit">Edit/Delete Restaurant</string>
+    <string name="about">About</string>
+    <string name="search">Search</string>
 </resources>
