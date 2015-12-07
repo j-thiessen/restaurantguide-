@@ -1,16 +1,23 @@
 package com.example.jordan.groupproject;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        findViewById(R.id.btnSearch).setOnClickListener(this);
+        findViewById(R.id.btnView).setOnClickListener(this);
+        findViewById(R.id.btnAdd).setOnClickListener(this);
+        findViewById(R.id.btnAbout).setOnClickListener(this);
     }
 
     @Override
@@ -33,5 +40,29 @@ public class MainActivity extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()){
+
+            case R.id.btnAbout:
+                Intent gen = new Intent(this, AboutActivity.class);
+                startActivity(gen);
+                break;
+            case R.id.btnAdd:
+                Intent att = new Intent(this, AddActivity.class);
+                startActivity(att);
+                break;
+            case R.id.btnSearch:
+                Intent lea = new Intent(this, SearchActivity.class);
+                startActivity(lea);
+                break;
+            case R.id.btnView:
+                Intent map = new Intent(this, ViewActivity.class);
+                startActivity(map);
+                break;
+
+        }
     }
 }
