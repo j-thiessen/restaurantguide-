@@ -14,7 +14,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        findViewById(R.id.btnSearch).setOnClickListener(this);
+        findViewById(R.id.btnSearchSubmit).setOnClickListener(this);
         findViewById(R.id.btnView).setOnClickListener(this);
         findViewById(R.id.btnAdd).setOnClickListener(this);
         findViewById(R.id.btnAbout).setOnClickListener(this);
@@ -54,7 +54,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 Intent att = new Intent(this, AddActivity.class);
                 startActivity(att);
                 break;
-            case R.id.btnSearch:
+            case R.id.btnSearchSubmit:
                 Intent lea = new Intent(this, SearchActivity.class);
                 startActivity(lea);
                 break;
