@@ -7,31 +7,38 @@ import android.view.MenuItem;
 
 public class DBItems extends AppCompatActivity {
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_restuant_dbitems);
+    private String name, email;
+    int id;
+
+    public DBItems() {}
+
+    public DBItems(int id, String name, String email){
+        this.id = id;
+        this.name = name;
+        this.email = email;
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_restuant_dbitems, menu);
-        return true;
+    public String getName() {
+        return name;
     }
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
+    public void setName(String name) {
+        this.name = name;
+    }
 
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
+    public String getEmail() {
+        return email;
+    }
 
-        return super.onOptionsItemSelected(item);
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 }

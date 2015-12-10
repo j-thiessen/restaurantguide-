@@ -17,9 +17,8 @@ public class DBHandler extends SQLiteOpenHelper {
     public static final String COLUMN_NAME = "name";
     public static final String COLUMN_EMAIL = "email";
 
-    public DBHandler(Context context, String name,
-                     SQLiteDatabase.CursorFactory factory, int version) {
-        super(context, DATABASE_NAME, factory, DATABASE_VERSION);
+    public DBHandler(Context context) {
+        super(context, DATABASE_NAME, null, DATABASE_VERSION);
     }
 
     @Override
@@ -33,11 +32,11 @@ public class DBHandler extends SQLiteOpenHelper {
                           int newVersion) {
     }
 
-    public void addSpeaker(DBItems speaker) {
+    public void addRestaurant(DBItems item) {
 
         ContentValues values = new ContentValues();
-        values.put(COLUMN_NAME, speaker.getName());
-        values.put(COLUMN_EMAIL, speaker.getEmail());
+        values.put(COLUMN_NAME, item.getName());
+        values.put(COLUMN_EMAIL, item.getEmail());
 
         SQLiteDatabase db = this.getWritableDatabase();
 
@@ -45,48 +44,69 @@ public class DBHandler extends SQLiteOpenHelper {
         db.close();
     }
 
+    public Cursor selectAll(){
+        SQLiteDatabase db = getReadableDatabase();
 
-    public DBItems findSpeaker(String speakername) {
-        String query = "Select * FROM " + TABLE_RESTAURANT + " WHERE " + COLUMN_NAME + " =  \"" + speakername + "\"";
+        String[] projection = {
+                RestaurantContract.DBItems._ID,
+                RestaurantContract.DBItems.COLUMN_NAME_NAME,
+                RestaurantContract.DBItems.COLUMN_NAME_EMAIL
+        };
+
+        // all the nulls take care of where, group by, having etc parameters
+        return db.query(RestaurantContract.DBItems.TABLE_NAME,
+                projection,
+                null, // where fields
+                null, // where arguments
+                null, // group by
+                null, // having
+                null // order by ... limit also exists
+        );
+
+    }
+
+    public DBItems findRestaurant(String itemname) {
+        String query = "Select * FROM " + TABLE_RESTAURANT + " WHERE " + COLUMN_NAME + " =  \"" + itemname + "\"";
 
         SQLiteDatabase db = this.getWritableDatabase();
 
         Cursor cursor = db.rawQuery(query, null);
 
-        DBItems speaker = new DBItems();
+        DBItems item = new DBItems();
 
         if (cursor.moveToFirst()) {
             cursor.moveToFirst();
-            speaker.setId(Integer.parseInt(cursor.getString(0)));
-            speaker.setName(cursor.getString(1));
-            speaker.setEmail(cursor.getString(1));
+            item.setId(Integer.parseInt(cursor.getString(0)));
+            item.setName(cursor.getString(1));
+            item.setEmail(cursor.getString(1));
             cursor.close();
         } else {
-            speaker = null;
+            item = null;
         }
         db.close();
-        return speaker;
+        return item;
     }
 
-    public boolean deleteSpeaker(String speakerName) {
+    public boolean deleteRestaurant(String itemName) {
 
         boolean result = false;
 
-        String query = "Select * FROM " + TABLE_RESTAURANT + " WHERE " + COLUMN_NAME + " =  \"" + speakerName + "\"";
+        String query = "Select * FROM " + TABLE_RESTAURANT + " WHERE " + COLUMN_NAME + " =  \"" + itemName + "\"";
 
         SQLiteDatabase db = this.getWritableDatabase();
 
         Cursor cursor = db.rawQuery(query, null);
 
-        DBItems speaker = new DBItems();
+        DBItems item = new DBItems();
 
         if (cursor.moveToFirst()) {
-            speaker.setId(Integer.parseInt(cursor.getString(0)));
+            item.setId(Integer.parseInt(cursor.getString(0)));
             db.delete(TABLE_RESTAURANT, COLUMN_ID + " = ?",
-                    new String[] { String.valueOf(speaker.getId()) });
+                    new String[] { String.valueOf(item.getId()) });
             cursor.close();
             result = true;
         }
         db.close();
         return result;
     }
+}

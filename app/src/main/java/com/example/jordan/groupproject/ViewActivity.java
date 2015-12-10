@@ -1,37 +1,84 @@
 package com.example.jordan.groupproject;
 
+import android.content.Intent;
+import android.database.Cursor;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
+
+import java.util.ArrayList;
 
 public class ViewActivity extends AppCompatActivity {
+
+    ArrayList<DBItems> items = new ArrayList<DBItems>();
+    int index = 0;
+    ListView listView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_view);
-    }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_view, menu);
-        return true;
-    }
+        String name, email;
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
+        DBItems rest0 = new DBItems(1, "The MacDonaldson", "mac@donaldson.son");
+        DBItems rest1 = new DBItems(2, "Bob Robbins", "bob@robbins.net");
 
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
+        DBHandler dbHelper = new DBHandler(this);
+        Cursor c = dbHelper.selectAll();
+
+        if(c.moveToFirst()) {
+
+            while(!c.isAfterLast()) {
+                name = c.getString(c.getColumnIndexOrThrow((RestaurantContract.DBItems.COLUMN_NAME_NAME)));
+
+                email = c.getString(c.getColumnIndexOrThrow((RestaurantContract.DBItems.COLUMN_NAME_EMAIL)));
+
+                DBItems item = new DBItems();
+                item.setName(name);
+                item.setEmail(email);
+                item.setId(c.getInt(c.getColumnIndexOrThrow((RestaurantContract.DBItems._ID))));
+                items.add(item);
+                c.moveToNext();
+            }
         }
 
-        return super.onOptionsItemSelected(item);
-    }
-}
+        final ListView lvItems = (ListView) findViewById(R.id.lvAll);
+        lvItems.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                int itemPosition = position;
+                long itemValue = ((DBItems) lvItems.getItemAtPosition(position)).getId();
+                Intent intent = new Intent(DBItems.this, DBItems.class);
+                intent.putExtra("restaurant_id", itemValue);
+                startActivity(intent);
+
+                }
+
+                @Override
+                public boolean onCreateOptionsMenu(Menu menu) {
+                    // Inflate the menu; this adds items to the action bar if it is present.
+                    getMenuInflater().inflate(R.menu.menu_view, menu);
+                    return true;
+                }
+
+                @Override
+                public boolean onOptionsItemSelected(MenuItem item) {
+                    // Handle action bar item clicks here. The action bar will
+                    // automatically handle clicks on the Home/Up button, so long
+                    // as you specify a parent activity in AndroidManifest.xml.
+                    int id = item.getItemId();
+
+                    //noinspection SimplifiableIfStatement
+                    if (id == R.id.action_settings) {
+                        return true;
+                    }
+
+                    return super.onOptionsItemSelected(item);
+                }
+            }
