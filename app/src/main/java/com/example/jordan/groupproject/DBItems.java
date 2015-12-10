@@ -1,33 +1,22 @@
 package com.example.jordan.groupproject;
 
-import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.os.Handler;
 
-public class SplashActivity extends AppCompatActivity {
+public class DBItems extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_splash);
-
-        new Handler().postDelayed(new Runnable() {
-            @Override
-            public void run() {
-
-                Intent i = new Intent(SplashActivity.this, MainActivity.class);
-                startActivity(i);
-            }
-        }, 3000);
+        setContentView(R.layout.activity_restuant_dbitems);
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_splash, menu);
+        getMenuInflater().inflate(R.menu.menu_restuant_dbitems, menu);
         return true;
     }
 

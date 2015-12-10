@@ -1,16 +1,28 @@
 package com.example.jordan.groupproject;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
 
-public class SearchActivity extends AppCompatActivity {
+import java.util.List;
+
+public class SearchActivity extends AppCompatActivity implements View.OnClickListener {
+
+    ListView listView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search);
+
+        findViewById(R.id.btnSearchSubmit).setOnClickListener(this);
+
+
     }
 
     @Override
@@ -33,5 +45,25 @@ public class SearchActivity extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void onClick(View v) {
+
+        String[] values = new String[]{
+                "",
+                "IT'S ALL ABOUT RESULTS",
+                "RESULTS RESULTS RESULTS"
+        };
+        ListView listView = (ListView) findViewById(R.id.lstResults);
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, android.R.id.text1, values);
+        listView.setAdapter(adapter);
+
+        switch (v.getId()){
+
+            case R.id.btnSearchSubmit:
+                    listView.setVisibility(View.VISIBLE);
+                break;
+       }
     }
 }
