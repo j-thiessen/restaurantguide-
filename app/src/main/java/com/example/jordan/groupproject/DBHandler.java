@@ -9,7 +9,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 public class DBHandler extends SQLiteOpenHelper {
     private static final String DATABASE_NAME = "rest.db";
-    private static final int DATABASE_VERSION = 5;
+    private static final int DATABASE_VERSION = 6;
 
     public DBHandler(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
@@ -17,6 +17,8 @@ public class DBHandler extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
+        System.out.println("DBHandler onCreate OK");
+
         System.out.println("Creating database... " + DATABASE_NAME + ", version " + DATABASE_VERSION);
         db.execSQL(RestaurantContract.DBItems.CREATE);
         initialize(db);
@@ -81,6 +83,7 @@ public class DBHandler extends SQLiteOpenHelper {
         addRestaurant("The MacDonaldson", "mac@donaldson.son", db);
         addRestaurant("Bob Robbins", "bob@robbins.net", db);
 
+        System.out.println("Initialized Successfully");
     }
 
     public void addRestaurant(String name, String email, SQLiteDatabase db) {

@@ -25,6 +25,8 @@ public class ViewActivity extends AppCompatActivity {
 
         String name, email;
 
+        System.out.println("View Activity OK");
+
         DBHandler dbHelper = new DBHandler(this);
         Cursor c = dbHelper.getAll();
 
@@ -43,8 +45,8 @@ public class ViewActivity extends AppCompatActivity {
                 c.moveToNext();
             }
         }
-
         final ListView lvItems = (ListView) findViewById(R.id.lvAll);
+
         lvItems.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -57,7 +59,6 @@ public class ViewActivity extends AppCompatActivity {
         });
 
         lvItems.setAdapter(new ItemsAdapter(this, items));
-
     }
 
     @Override
