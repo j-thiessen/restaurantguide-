@@ -8,14 +8,8 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 
 public class DBHandler extends SQLiteOpenHelper {
-
-    private static final int DATABASE_VERSION = 1;
-    private static final String DATABASE_NAME = "restaurantdb.db";
-    private static final String TABLE_RESTAURANT = "restaurant";
-
-    public static final String COLUMN_ID = "_id";
-    public static final String COLUMN_NAME = "name";
-    public static final String COLUMN_EMAIL = "email";
+    private static final String DATABASE_NAME = "rest.db";
+    private static final int DATABASE_VERSION = 5;
 
     public DBHandler(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
@@ -23,28 +17,23 @@ public class DBHandler extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        db.execSQL("DROP TABLE IF EXISTS " + TABLE_RESTAURANT);
-        onCreate(db);
+        System.out.println("Creating database... " + DATABASE_NAME + ", version " + DATABASE_VERSION);
+        db.execSQL(RestaurantContract.DBItems.CREATE);
+        initialize(db);
     }
 
     @Override
-    public void onUpgrade(SQLiteDatabase db, int oldVersion,
-                          int newVersion) {
+    public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
+        System.out.println("Upgrading database... " + DATABASE_NAME + ", from version " + oldVersion + " to version " + newVersion);
+        // used for versions higher than 1; you could drop tables then recreate, etc
+        // don't do this in production applications..
+        db.execSQL(RestaurantContract.DBItems.DROP);
+        onCreate(db);
     }
 
-    public void addRestaurant(DBItems item) {
+    // methods we added:
 
-        ContentValues values = new ContentValues();
-        values.put(COLUMN_NAME, item.getName());
-        values.put(COLUMN_EMAIL, item.getEmail());
-
-        SQLiteDatabase db = this.getWritableDatabase();
-
-        db.insert(TABLE_RESTAURANT, null, values);
-        db.close();
-    }
-
-    public Cursor selectAll(){
+    public Cursor getAll() {
         SQLiteDatabase db = getReadableDatabase();
 
         String[] projection = {
@@ -62,51 +51,47 @@ public class DBHandler extends SQLiteOpenHelper {
                 null, // having
                 null // order by ... limit also exists
         );
+    }
+
+    // to get one restaurant
+    public Cursor getRestaurant(int id) {
+        SQLiteDatabase db = getReadableDatabase();
+
+        String[] projection = {
+                RestaurantContract.DBItems._ID,
+                RestaurantContract.DBItems.COLUMN_NAME_NAME,
+                RestaurantContract.DBItems.COLUMN_NAME_EMAIL
+        };
+
+        // all the nulls take care of where, group by, having etc parameters
+        return db.query(RestaurantContract.DBItems.TABLE_NAME,
+                projection,
+                "_ID = ?",                  // where fields
+                new String[] {"" + id},     // where arguments
+                null,                       // group by
+                null,                       // having
+                null                        // order by ... limit also exists
+        );
+    }
+
+    public void initialize(SQLiteDatabase db) {
+
+        ContentValues values = new ContentValues();
+
+        addRestaurant("The MacDonaldson", "mac@donaldson.son", db);
+        addRestaurant("Bob Robbins", "bob@robbins.net", db);
 
     }
 
-    public DBItems findRestaurant(String itemname) {
-        String query = "Select * FROM " + TABLE_RESTAURANT + " WHERE " + COLUMN_NAME + " =  \"" + itemname + "\"";
+    public void addRestaurant(String name, String email, SQLiteDatabase db) {
 
-        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues values = new ContentValues();
 
-        Cursor cursor = db.rawQuery(query, null);
+        values.put(RestaurantContract.DBItems.COLUMN_NAME_NAME,name);
+        values.put(RestaurantContract.DBItems.COLUMN_NAME_EMAIL,email);
 
-        DBItems item = new DBItems();
+        long id = db.insert(RestaurantContract.DBItems.TABLE_NAME, null, values);
 
-        if (cursor.moveToFirst()) {
-            cursor.moveToFirst();
-            item.setId(Integer.parseInt(cursor.getString(0)));
-            item.setName(cursor.getString(1));
-            item.setEmail(cursor.getString(1));
-            cursor.close();
-        } else {
-            item = null;
-        }
-        db.close();
-        return item;
-    }
-
-    public boolean deleteRestaurant(String itemName) {
-
-        boolean result = false;
-
-        String query = "Select * FROM " + TABLE_RESTAURANT + " WHERE " + COLUMN_NAME + " =  \"" + itemName + "\"";
-
-        SQLiteDatabase db = this.getWritableDatabase();
-
-        Cursor cursor = db.rawQuery(query, null);
-
-        DBItems item = new DBItems();
-
-        if (cursor.moveToFirst()) {
-            item.setId(Integer.parseInt(cursor.getString(0)));
-            db.delete(TABLE_RESTAURANT, COLUMN_ID + " = ?",
-                    new String[] { String.valueOf(item.getId()) });
-            cursor.close();
-            result = true;
-        }
-        db.close();
-        return result;
+        System.out.println("Added Successfully");
     }
 }

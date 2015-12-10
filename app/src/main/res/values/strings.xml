@@ -19,4 +19,5 @@
     <string name="title_activity_maps">Map</string>
     <string name="title_activity_restuant_dbitems">RestuantDBItems</string>
     <string name="select">Select a restaurant for detailed view</string>
+    <string name="title_activity_single">SingleActivity</string>
 </resources>

@@ -88,6 +88,10 @@
             android:name=".DBItems"
             android:label="@string/title_activity_restuant_dbitems" >
         </activity>
+        <activity
+            android:name=".SingleActivity"
+            android:label="@string/title_activity_single" >
+        </activity>
     </application>
 
 </manifest>
