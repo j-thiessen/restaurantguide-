@@ -4,6 +4,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.EditText;
 
 public class AddActivity extends AppCompatActivity {
 
@@ -33,5 +35,21 @@ public class AddActivity extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+
+    public void onClick(View v) {
+        String name, address, number,description,tags;
+
+        name = ((EditText)findViewById(R.id.editName)).getText().toString();
+        address = ((EditText)findViewById(R.id.editAddress)).getText().toString();
+        number = ((EditText)findViewById(R.id.editNumber)).getText().toString();
+        description =  ((EditText)findViewById(R.id.editDescription)).getText().toString();
+        tags =  ((EditText)findViewById(R.id.editTags)).getText().toString();
+
+
+        DBHandler dbHelper = new DBHandler(this);
+        dbHelper.addRestaurant(name, address, number,description,tags);
+
     }
 }

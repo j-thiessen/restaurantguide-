@@ -6,87 +6,108 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
-
 public class DBHandler extends SQLiteOpenHelper {
+    private static final String DATABASE_NAME = "restaurant.db";
+    private static final int DATABASE_VERSION = 3;
 
-    private static final int DATABASE_VERSION = 1;
-    private static final String DATABASE_NAME = "restaurantdb.db";
-    private static final String TABLE_RESTAURANT = "restaurant";
-
-    public static final String COLUMN_ID = "_id";
-    public static final String COLUMN_NAME = "name";
-    public static final String COLUMN_EMAIL = "email";
-
-    public DBHandler(Context context, String name,
-                     SQLiteDatabase.CursorFactory factory, int version) {
-        super(context, DATABASE_NAME, factory, DATABASE_VERSION);
+    public DBHandler(Context context) {
+        super(context, DATABASE_NAME, null, DATABASE_VERSION);
     }
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        db.execSQL("DROP TABLE IF EXISTS " + TABLE_RESTAURANT);
-        onCreate(db);
+        System.out.println("Creating database... " + DATABASE_NAME + ", version " + DATABASE_VERSION);
+        db.execSQL(RestaurantContract.Restaurants.CREATE);
+        initialize(db);
     }
 
     @Override
-    public void onUpgrade(SQLiteDatabase db, int oldVersion,
-                          int newVersion) {
+    public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
+        System.out.println("Upgrading database... " + DATABASE_NAME + ", from version " + oldVersion + " to version " + newVersion);
+        // used for versions higher than 1; you could drop tables then recreate, etc
+        // don't do this in production applications..
+        db.execSQL(RestaurantContract.Restaurants.DROP);
+        db.execSQL(RestaurantContract.Restaurants.CREATE);
+        initialize(db);
     }
 
-    public void addSpeaker(DBItems speaker) {
+
+    public Cursor getAllRestaurants() {
+        SQLiteDatabase db = getReadableDatabase();
+
+        String[] projection = {
+                RestaurantContract.Restaurants._ID,
+                RestaurantContract.Restaurants.COLUMN_NAME_NAME,
+                RestaurantContract.Restaurants.COLUMN_NAME_ADDRESS,
+                RestaurantContract.Restaurants.COLUMN_NAME_NUMBER,
+                RestaurantContract.Restaurants.COLUMN_NAME_DESCRIPTION,
+                RestaurantContract.Restaurants.COLUMN_NAME_TAGS
+        };
+
+        // all the nulls take care of where, group by, having etc parameters
+        return db.query(RestaurantContract.Restaurants.TABLE_NAME,
+                projection,
+                null, // where fields
+                null, // where arguments
+                null, // group by
+                null, // having
+                null // order by ... limit also exists
+        );
+    }
+
+    // to get one presenter
+    public Cursor getPresenter(int id) {
+        SQLiteDatabase db = getReadableDatabase();
+
+        String[] projection = {
+                RestaurantContract.Restaurants._ID,
+                RestaurantContract.Restaurants.COLUMN_NAME_NAME,
+                RestaurantContract.Restaurants.COLUMN_NAME_ADDRESS,
+                RestaurantContract.Restaurants.COLUMN_NAME_NUMBER,
+                RestaurantContract.Restaurants.COLUMN_NAME_DESCRIPTION,
+                RestaurantContract.Restaurants.COLUMN_NAME_TAGS
+        };
+
+        // all the nulls take care of where, group by, having etc parameters
+        return db.query(RestaurantContract.Restaurants.TABLE_NAME,
+                projection,
+                "_ID = ?",                  // where fields
+                new String[] {"" + id},     // where arguments
+                null,                       // group by
+                null,                       // having
+                null                        // order by ... limit also exists
+        );
+    }
+
+    public void initialize(SQLiteDatabase db) {
+        //SQLiteDatabase db = getWritableDatabase();
+        ContentValues values = new ContentValues();
+
+        values.put(RestaurantContract.Restaurants.COLUMN_NAME_NAME,"The Restaurant");
+        values.put(RestaurantContract.Restaurants.COLUMN_NAME_ADDRESS,"123 Unknown Street");
+        values.put(RestaurantContract.Restaurants.COLUMN_NAME_NUMBER,"416-123-4567");
+        values.put(RestaurantContract.Restaurants.COLUMN_NAME_DESCRIPTION,"This is the description of this restaurant");
+        values.put(RestaurantContract.Restaurants.COLUMN_NAME_TAGS,"Italian,Pasta, Vegeterian");
+
+        long id = db.insert(RestaurantContract.Restaurants.TABLE_NAME, null, values);
+
+        System.out.println("Item " + id + " added.");
+
+    }
+
+    public void addRestaurant(String name, String address, String number, String description, String tags) {
+        SQLiteDatabase db = getWritableDatabase();
 
         ContentValues values = new ContentValues();
-        values.put(COLUMN_NAME, speaker.getName());
-        values.put(COLUMN_EMAIL, speaker.getEmail());
 
-        SQLiteDatabase db = this.getWritableDatabase();
+        values.put(RestaurantContract.Restaurants.COLUMN_NAME_NAME,name);
+        values.put(RestaurantContract.Restaurants.COLUMN_NAME_ADDRESS, address);
+        values.put(RestaurantContract.Restaurants.COLUMN_NAME_NUMBER, number);
+        values.put(RestaurantContract.Restaurants.COLUMN_NAME_DESCRIPTION,description);
+        values.put(RestaurantContract.Restaurants.COLUMN_NAME_TAGS,tags);
 
-        db.insert(TABLE_RESTAURANT, null, values);
-        db.close();
+        long id = db.insert(RestaurantContract.Restaurants.TABLE_NAME, null, values);
+
+        System.out.println("Yay!");
     }
-
-
-    public DBItems findSpeaker(String speakername) {
-        String query = "Select * FROM " + TABLE_RESTAURANT + " WHERE " + COLUMN_NAME + " =  \"" + speakername + "\"";
-
-        SQLiteDatabase db = this.getWritableDatabase();
-
-        Cursor cursor = db.rawQuery(query, null);
-
-        DBItems speaker = new DBItems();
-
-        if (cursor.moveToFirst()) {
-            cursor.moveToFirst();
-            speaker.setId(Integer.parseInt(cursor.getString(0)));
-            speaker.setName(cursor.getString(1));
-            speaker.setEmail(cursor.getString(1));
-            cursor.close();
-        } else {
-            speaker = null;
-        }
-        db.close();
-        return speaker;
-    }
-
-    public boolean deleteSpeaker(String speakerName) {
-
-        boolean result = false;
-
-        String query = "Select * FROM " + TABLE_RESTAURANT + " WHERE " + COLUMN_NAME + " =  \"" + speakerName + "\"";
-
-        SQLiteDatabase db = this.getWritableDatabase();
-
-        Cursor cursor = db.rawQuery(query, null);
-
-        DBItems speaker = new DBItems();
-
-        if (cursor.moveToFirst()) {
-            speaker.setId(Integer.parseInt(cursor.getString(0)));
-            db.delete(TABLE_RESTAURANT, COLUMN_ID + " = ?",
-                    new String[] { String.valueOf(speaker.getId()) });
-            cursor.close();
-            result = true;
-        }
-        db.close();
-        return result;
-    }
+}
