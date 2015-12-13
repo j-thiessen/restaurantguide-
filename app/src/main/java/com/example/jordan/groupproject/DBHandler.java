@@ -55,8 +55,8 @@ public class DBHandler extends SQLiteOpenHelper {
         );
     }
 
-    // to get one presenter
-    public Cursor getPresenter(int id) {
+    // to get one restaurant
+    public Cursor getRestaurant(int id) {
         SQLiteDatabase db = getReadableDatabase();
 
         String[] projection = {
