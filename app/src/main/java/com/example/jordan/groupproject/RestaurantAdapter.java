@@ -12,16 +12,16 @@ import java.util.ArrayList;
 /**
  * Created by Jordan on 2015-12-10.
  */
-public class RestaurantAdapter extends ArrayAdapter<DBItems> {
+public class RestaurantAdapter extends ArrayAdapter<Restaurant> {
 
-    public RestaurantAdapter(Context context, ArrayList<DBItems> restaurants) {
+    public RestaurantAdapter(Context context, ArrayList<Restaurant> restaurants) {
         super(context, 0, restaurants);
     }
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         // Get the data item for this position
-        DBItems restaurant = getItem(position);
+        Restaurant restaurant = getItem(position);
         // Check if an existing view is being reused, otherwise inflate the view
         if (convertView == null) {
             convertView = LayoutInflater.from(getContext()).inflate(R.layout.activity_single, parent, false);

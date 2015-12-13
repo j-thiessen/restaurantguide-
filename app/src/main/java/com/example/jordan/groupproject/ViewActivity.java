@@ -14,7 +14,7 @@ import java.util.ArrayList;
 
 public class ViewActivity extends AppCompatActivity {
 
-    ArrayList<DBItems> items = new ArrayList<DBItems>();
+    ArrayList<Restaurant> restaurantList = new ArrayList<Restaurant>();
     int index = 0;
     ListView listView;
 
@@ -23,9 +23,7 @@ public class ViewActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_view);
 
-        String name, email;
-
-        System.out.println("View Activity OK");
+        String name, address, number, description, tags;
 
         DBHandler dbHelper = new DBHandler(this);
         Cursor c = dbHelper.getAllRestaurants();
@@ -35,27 +33,37 @@ public class ViewActivity extends AppCompatActivity {
             while(!c.isAfterLast()) {
                 name = c.getString(c.getColumnIndexOrThrow((RestaurantContract.Restaurants.COLUMN_NAME_NAME)));
 
-                Restaurant item = new Restaurant();
-                item.setName(name);
-                item.setId(c.getInt(c.getColumnIndexOrThrow((RestaurantContract.Restaurants._ID))));
-                items.add(item);
+                address = c.getString(c.getColumnIndexOrThrow((RestaurantContract.Restaurants.COLUMN_NAME_ADDRESS)));
+
+                description = c.getString(c.getColumnIndexOrThrow((RestaurantContract.Restaurants.COLUMN_NAME_DESCRIPTION)));
+
+                tags = c.getString(c.getColumnIndexOrThrow((RestaurantContract.Restaurants.COLUMN_NAME_TAGS)));
+
+                Restaurant rest = new Restaurant();
+                rest.setName(name);
+                rest.setAddress(address);
+                rest.setDescription(description);
+                rest.setTags(tags);
+                rest.setId(c.getInt(c.getColumnIndexOrThrow((RestaurantContract.Restaurants._ID))));
+                restaurantList.add(rest);
                 c.moveToNext();
             }
         }
-        final ListView lvItems = (ListView) findViewById(R.id.lvAll);
 
+        final ListView lvItems = (ListView) findViewById(R.id.lvAll);
         lvItems.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 int itemPosition = position;
-                long itemValue = ((Restaurant) lvItems.getItemAtPosition(position)).getId();
+                long itemValue = ((Restaurant)lvItems.getItemAtPosition(position)).getId();
                 Intent intent = new Intent(ViewActivity.this, SingleActivity.class);
-                intent.putExtra("restaurant_id", itemValue);
+                intent.putExtra("speaker_id", itemValue);
                 startActivity(intent);
             }
         });
 
-        lvItems.setAdapter(new ItemsAdapter(this, items));
+        lvItems.setAdapter(new RestaurantAdapter(this, restaurantList));
+
     }
 
     @Override
@@ -80,4 +88,3 @@ public class ViewActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 }
-

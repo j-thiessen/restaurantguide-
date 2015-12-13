@@ -1,22 +1,38 @@
 package com.example.jordan.groupproject;
 
+import android.database.Cursor;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.TextView;
 
-public class DBItems extends AppCompatActivity {
+public class SingleActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_restuant_dbitems);
+        setContentView(R.layout.activity_single);
+
+        String name, bio, email, affiliation;
+
+        long id = getIntent().getLongExtra("restaurant_id", 0);
+
+        DBHandler dbHelper = new DBHandler(this);
+        Cursor c = dbHelper.getRestaurant((int) id);
+
+        if(c.moveToFirst()) {
+            name = c.getString(c.getColumnIndexOrThrow((RestaurantContract.Restaurants.COLUMN_NAME_NAME)));
+            // ((TextView) findViewById(R.id.txtName)).setText(name);
+
+
+        }
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_restuant_dbitems, menu);
+        getMenuInflater().inflate(R.menu.menu_single, menu);
         return true;
     }
 
