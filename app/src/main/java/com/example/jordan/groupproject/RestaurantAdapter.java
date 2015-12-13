@@ -26,11 +26,7 @@ public class RestaurantAdapter extends ArrayAdapter<Restaurant> {
         if (convertView == null) {
             convertView = LayoutInflater.from(getContext()).inflate(R.layout.activity_single, parent, false);
         }
-        // Lookup view for data population
-        // TextView  = (TextView) convertView.findViewById(R.id.);
-        // Populate the data into the template view using the data object
-        //   .setText(.getName());
-        // Return the completed view to render on screen
+
         return convertView;
     }
 }

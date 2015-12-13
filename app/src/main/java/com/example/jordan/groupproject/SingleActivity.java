@@ -23,9 +23,6 @@ public class SingleActivity extends AppCompatActivity {
 
         if(c.moveToFirst()) {
             name = c.getString(c.getColumnIndexOrThrow((RestaurantContract.Restaurants.COLUMN_NAME_NAME)));
-            // ((TextView) findViewById(R.id.txtName)).setText(name);
-
-
         }
     }
 
