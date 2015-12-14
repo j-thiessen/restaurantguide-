@@ -74,7 +74,8 @@
         </activity>
         <activity
             android:name=".SingleActivity"
-            android:label="@string/title_activity_single" >
+            android:label="@string/title_activity_single"
+            android:parentActivityName=".ViewActivity">
         </activity>
     </application>
 

@@ -1,10 +1,13 @@
 package com.example.jordan.groupproject;
 
+import android.content.Intent;
 import android.database.Cursor;
+import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.TextView;
 
 public class SingleActivity extends AppCompatActivity {
@@ -36,7 +39,6 @@ public class SingleActivity extends AppCompatActivity {
 
             tags = c.getString(c.getColumnIndexOrThrow((RestaurantContract.Restaurants.COLUMN_NAME_TAGS)));
             ((TextView) findViewById(R.id.txtTags)).setText(tags);
-
         }
     }
 
@@ -60,5 +62,21 @@ public class SingleActivity extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    public void openMap(View v) {
+
+        String address = "426 Arlington Avenue, York, ON, M6C 3A2";
+        Intent intent = new Intent(android.content.Intent.ACTION_VIEW);
+        Uri u = Uri.parse("http://maps.google.com/maps?daddr=" + address);
+        intent.setClassName("com.google.android.apps.maps", "com.google.android.maps.MapsActivity");
+        intent.setData(u);
+        startActivity(intent);
+
+  /* this works to simply open the map to the address
+    String address = "426 Arlington Avenue, York, ON, M6C 3A2";
+
+    Intent searchAddress = new  Intent(Intent.ACTION_VIEW,Uri.parse("geo:0,0?q="+address));
+    startActivity(searchAddress); */
     }
 }
