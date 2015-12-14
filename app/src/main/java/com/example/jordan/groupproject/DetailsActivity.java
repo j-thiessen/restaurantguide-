@@ -1,24 +1,37 @@
 package com.example.jordan.groupproject;
 
-import android.support.v7.app.AppCompatActivity;
+import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.EditText;
+import android.widget.ShareActionProvider;
 
-public class AddActivity extends AppCompatActivity {
+public class DetailsActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_add);
+        setContentView(R.layout.activity_about);
+
+
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_add, menu);
+        getMenuInflater().inflate(R.menu.menu_about, menu);
+
+        MenuItem shareItem = (MenuItem) menu.findItem(R.id.action_share);
+        ShareActionProvider mShare = (ShareActionProvider)shareItem.getActionProvider();
+
+        Intent shareIntent = new Intent(Intent.ACTION_SEND);
+        shareIntent.setAction(Intent.ACTION_SEND);
+        shareIntent.setType("text/plain");
+        shareIntent.putExtra(Intent.EXTRA_TEXT,"text to share");
+
+        mShare.setShareIntent(shareIntent);
+
         return true;
     }
 
@@ -35,21 +48,5 @@ public class AddActivity extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected(item);
-    }
-
-
-    public void onClick(View v) {
-        String name, address, number,description,tags;
-
-        name = ((EditText)findViewById(R.id.editName)).getText().toString();
-        address = ((EditText)findViewById(R.id.editAddress)).getText().toString();
-        number = ((EditText)findViewById(R.id.editNumber)).getText().toString();
-        description =  ((EditText)findViewById(R.id.editDescription)).getText().toString();
-        tags =  ((EditText)findViewById(R.id.editTags)).getText().toString();
-
-
-        DBHandler dbHelper = new DBHandler(this);
-        dbHelper.addRestaurant(name, address, number,description,tags);
-
     }
 }

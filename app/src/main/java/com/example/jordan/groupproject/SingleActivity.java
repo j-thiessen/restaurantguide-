@@ -1,24 +1,35 @@
 package com.example.jordan.groupproject;
 
+import android.database.Cursor;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.EditText;
+import android.widget.TextView;
 
-public class AddActivity extends AppCompatActivity {
+public class SingleActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_add);
+        setContentView(R.layout.activity_single);
+
+        String name, bio, email, affiliation;
+
+        long id = getIntent().getLongExtra("restaurant_id", 0);
+
+        DBHandler dbHelper = new DBHandler(this);
+        Cursor c = dbHelper.getRestaurant((int) id);
+
+        if(c.moveToFirst()) {
+            name = c.getString(c.getColumnIndexOrThrow((RestaurantContract.Restaurants.COLUMN_NAME_NAME)));
+        }
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_add, menu);
+        getMenuInflater().inflate(R.menu.menu_single, menu);
         return true;
     }
 
@@ -35,21 +46,5 @@ public class AddActivity extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected(item);
-    }
-
-
-    public void onClick(View v) {
-        String name, address, number,description,tags;
-
-        name = ((EditText)findViewById(R.id.editName)).getText().toString();
-        address = ((EditText)findViewById(R.id.editAddress)).getText().toString();
-        number = ((EditText)findViewById(R.id.editNumber)).getText().toString();
-        description =  ((EditText)findViewById(R.id.editDescription)).getText().toString();
-        tags =  ((EditText)findViewById(R.id.editTags)).getText().toString();
-
-
-        DBHandler dbHelper = new DBHandler(this);
-        dbHelper.addRestaurant(name, address, number,description,tags);
-
     }
 }

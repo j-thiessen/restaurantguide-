@@ -34,28 +34,38 @@
         <activity
             android:name=".SplashActivity"
             android:label="@string/title_activity_splash" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
         <activity
             android:name=".SearchActivity"
-            android:label="@string/title_activity_search" >
+            android:label="@string/title_activity_search"
+            android:parentActivityName=".MainActivity" >
         </activity>
         <activity
             android:name=".ViewActivity"
-            android:label="@string/title_activity_view" >
+            android:label="@string/title_activity_view"
+            android:parentActivityName=".MainActivity" >
         </activity>
         <activity
             android:name=".AddActivity"
-            android:icon="@drawable/app_icon_your_company"
             android:label="@string/title_activity_add"
-            android:logo="@drawable/app_icon_your_company"
-            android:screenOrientation="landscape" >
+            android:parentActivityName=".MainActivity" >
         </activity>
-        <activity android:name=".DetailsActivity" />
+
+        <!--
+            <activity android:name=".DetailsActivity" />
         <activity android:name=".PlaybackOverlayActivity" />
         <activity android:name=".BrowseErrorActivity" />
+        -->
+
         <activity
             android:name=".AboutActivity"
-            android:label="@string/title_activity_about" >
+            android:label="@string/title_activity_about"
+            android:parentActivityName=".MainActivity" >
         </activity>
 
         <meta-data
@@ -70,8 +80,10 @@
             android:label="@string/title_activity_maps" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
     </application>
+
 </manifest>
