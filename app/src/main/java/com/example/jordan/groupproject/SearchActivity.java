@@ -2,12 +2,14 @@ package com.example.jordan.groupproject;
 
 import android.content.Intent;
 import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.EditText;
 import android.widget.ListView;
 
 import java.util.ArrayList;
@@ -50,42 +52,16 @@ public class SearchActivity extends AppCompatActivity implements View.OnClickLis
 
     @Override
     public void onClick(View v) {
-        String name, address, number, description, tags;
-        final String input = findViewById(R.id.editSearch).toString();
-        int x = 0;
+
+        EditText searchTerm = (EditText)findViewById(R.id.textView);
 
         DBHandler dbHelper = new DBHandler(this);
-
-        Cursor c = dbHelper.getAllRestaurants();
-        //////////////
-        // we need something like
-        // Cursor d = dbHelper.getRestaurant(x++);
-        // and loop through looking for 'input'
-        /////////////
-
-        if(c.moveToFirst()) {
-
-            while (!c.isAfterLast()) {
-                name = c.getString(c.getColumnIndexOrThrow((RestaurantContract.Restaurants.COLUMN_NAME_NAME)));
-                address = c.getString(c.getColumnIndexOrThrow((RestaurantContract.Restaurants.COLUMN_NAME_ADDRESS)));
-                number = c.getString(c.getColumnIndexOrThrow((RestaurantContract.Restaurants.COLUMN_NAME_NUMBER)));
-                description = c.getString(c.getColumnIndexOrThrow((RestaurantContract.Restaurants.COLUMN_NAME_DESCRIPTION)));
-                tags = c.getString(c.getColumnIndexOrThrow((RestaurantContract.Restaurants.COLUMN_NAME_TAGS)));
-
-                Restaurant rest = new Restaurant();
-                rest.setName(name);
-                rest.setAddress(address);
-                rest.setNumber(number);
-                rest.setDescription(description);
-                rest.setTags(tags);
-                rest.setId(c.getInt(c.getColumnIndexOrThrow((RestaurantContract.Restaurants._ID))));
-                restaurantList.add(rest);
-                
-                c.moveToNext();
-            }
-
-            final ListView lvItems = (ListView) findViewById(R.id.lvResults);
-            lvItems.setAdapter(new RestaurantAdapter(this, restaurantList));
-        }
+        SQLiteDatabase db = dbHelper.getWritableDatabase();
+        Cursor searchCursor = db.rawQuery("SELECT * FROM restaurants WHERE name LIKE \'%" + searchTerm.getText() + "%\'", null);
+        ListView items = (ListView)findViewById(R.id.lvResults);
+        // the problem here is that the searchCursor needs to somehow be converted to an ArrayList
+        RestaurantAdapter restaurantCursorAdapter = new RestaurantAdapter(this, searchCursor);
+        items.setAdapter(restaurantCursorAdapter);
+        items.setOnItemClickListener(this);
     }
 }
