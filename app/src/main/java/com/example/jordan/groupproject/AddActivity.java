@@ -1,5 +1,6 @@
 package com.example.jordan.groupproject;
 
+import android.database.sqlite.SQLiteDatabase;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -38,7 +39,7 @@ public class AddActivity extends AppCompatActivity {
     }
 
 
-    public void onClick(View v) {
+    public void onClick(View v, SQLiteDatabase db) {
         String name, address, number,description,tags;
 
         name = ((EditText)findViewById(R.id.editName)).getText().toString();
@@ -49,7 +50,7 @@ public class AddActivity extends AppCompatActivity {
 
 
         DBHandler dbHelper = new DBHandler(this);
-        dbHelper.addRestaurant(name, address, number,description,tags);
+        dbHelper.addRestaurant(name, address, number,description,tags, db);
 
     }
 }

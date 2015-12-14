@@ -58,7 +58,7 @@ public class ViewActivity extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 int itemPosition = position;
-                long itemValue = ((Restaurant)lvItems.getItemAtPosition(position)).getId();
+                long itemValue = ((Restaurant)lvItems.getItemAtPosition(itemPosition)).getId();
                 Intent intent = new Intent(ViewActivity.this, SingleActivity.class);
                 intent.putExtra("restaurant_id", itemValue);
                 startActivity(intent);
