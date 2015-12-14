@@ -94,8 +94,8 @@ public class DBHandler extends SQLiteOpenHelper {
 
     }
 
-    public void addRestaurant(String name, String address, String number, String description, String tags, SQLiteDatabase db) {
-        //SQLiteDatabase db = getWritableDatabase();
+    public void addRestaurant(String name, String address, String number, String description, String tags) {
+        SQLiteDatabase db = getWritableDatabase();
 
         ContentValues values = new ContentValues();
 

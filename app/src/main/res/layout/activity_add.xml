@@ -76,7 +76,7 @@
         android:layout_marginBottom="44dp"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
-        android:onClick="onClick" />
+        android:onClick="addBtn" />
 
     <TextView
         android:layout_width="wrap_content"
