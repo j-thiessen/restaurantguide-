@@ -23,6 +23,20 @@ public class SingleActivity extends AppCompatActivity {
 
         if(c.moveToFirst()) {
             name = c.getString(c.getColumnIndexOrThrow((RestaurantContract.Restaurants.COLUMN_NAME_NAME)));
+            ((TextView) findViewById(R.id.txtName)).setText(name);
+
+            address = c.getString(c.getColumnIndexOrThrow((RestaurantContract.Restaurants.COLUMN_NAME_ADDRESS)));
+            ((TextView) findViewById(R.id.txtAddress)).setText(address);
+
+            number = c.getString(c.getColumnIndexOrThrow((RestaurantContract.Restaurants.COLUMN_NAME_NUMBER)));
+            ((TextView) findViewById(R.id.txtNumber)).setText(number);
+
+            description = c.getString(c.getColumnIndexOrThrow((RestaurantContract.Restaurants.COLUMN_NAME_DESCRIPTION)));
+            ((TextView) findViewById(R.id.txtDescription)).setText(description);
+
+            tags = c.getString(c.getColumnIndexOrThrow((RestaurantContract.Restaurants.COLUMN_NAME_TAGS)));
+            ((TextView) findViewById(R.id.txtTags)).setText(tags);
+
         }
     }
 

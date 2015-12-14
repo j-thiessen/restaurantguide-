@@ -8,7 +8,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 public class DBHandler extends SQLiteOpenHelper {
     private static final String DATABASE_NAME = "restaurant.db";
-    private static final int DATABASE_VERSION = 11;
+    private static final int DATABASE_VERSION = 12;
 
     public DBHandler(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
@@ -94,8 +94,8 @@ public class DBHandler extends SQLiteOpenHelper {
 
     }
 
-    public void addRestaurant(String name, String address, String number, String description, String tags) {
-        SQLiteDatabase db = getWritableDatabase();
+    public void addRestaurant(String name, String address, String number, String description, String tags, SQLiteDatabase db) {
+        //SQLiteDatabase db = getWritableDatabase();
 
         ContentValues values = new ContentValues();
 

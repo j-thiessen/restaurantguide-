@@ -55,13 +55,6 @@
             android:label="@string/title_activity_add"
             android:parentActivityName=".MainActivity" >
         </activity>
-
-        <!--
-            <activity android:name=".DetailsActivity" />
-        <activity android:name=".PlaybackOverlayActivity" />
-        <activity android:name=".BrowseErrorActivity" />
-        -->
-
         <activity
             android:name=".AboutActivity"
             android:label="@string/title_activity_about"
@@ -78,11 +71,10 @@
         <activity
             android:name=".MapsActivity"
             android:label="@string/title_activity_maps" >
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+        </activity>
+        <activity
+            android:name=".SingleActivity"
+            android:label="@string/title_activity_single" >
         </activity>
     </application>
 
