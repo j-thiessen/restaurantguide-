@@ -66,16 +66,10 @@ public class SearchActivity extends AppCompatActivity implements View.OnClickLis
         if(c.moveToFirst()) {
 
             while (!c.isAfterLast()) {
-
-
                 name = c.getString(c.getColumnIndexOrThrow((RestaurantContract.Restaurants.COLUMN_NAME_NAME)));
-
                 address = c.getString(c.getColumnIndexOrThrow((RestaurantContract.Restaurants.COLUMN_NAME_ADDRESS)));
-
                 number = c.getString(c.getColumnIndexOrThrow((RestaurantContract.Restaurants.COLUMN_NAME_NUMBER)));
-
                 description = c.getString(c.getColumnIndexOrThrow((RestaurantContract.Restaurants.COLUMN_NAME_DESCRIPTION)));
-
                 tags = c.getString(c.getColumnIndexOrThrow((RestaurantContract.Restaurants.COLUMN_NAME_TAGS)));
 
                 Restaurant rest = new Restaurant();
@@ -86,6 +80,7 @@ public class SearchActivity extends AppCompatActivity implements View.OnClickLis
                 rest.setTags(tags);
                 rest.setId(c.getInt(c.getColumnIndexOrThrow((RestaurantContract.Restaurants._ID))));
                 restaurantList.add(rest);
+                
                 c.moveToNext();
             }
 
