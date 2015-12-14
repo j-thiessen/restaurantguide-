@@ -17,7 +17,7 @@ public class SingleActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_single);
 
-        String name, bio, email, affiliation;
+      /*  String name, bio, email, affiliation;
 
         long id = getIntent().getLongExtra("restaurant_id", 0);
 
@@ -26,7 +26,7 @@ public class SingleActivity extends AppCompatActivity {
 
         if(c.moveToFirst()) {
             name = c.getString(c.getColumnIndexOrThrow((RestaurantContract.Restaurants.COLUMN_NAME_NAME)));
-        }
+        } */
     }
 
     @Override
@@ -52,11 +52,18 @@ public class SingleActivity extends AppCompatActivity {
     }
 
     public void openMap(View v) {
-        Intent intent = new Intent(android.content.Intent.ACTION_VIEW);
+
         String address = "426 Arlington Avenue, York, ON, M6C 3A2";
-        Uri u = Uri.parse("http://maps.google.com/maps?saddr=0,0&daddr=" + address);
+        Intent intent = new Intent(android.content.Intent.ACTION_VIEW);
+        Uri u = Uri.parse("http://maps.google.com/maps?daddr=" + address);
         intent.setClassName("com.google.android.apps.maps", "com.google.android.maps.MapsActivity");
         intent.setData(u);
         startActivity(intent);
+
+      /* this works to simply open the map to the address
+        String address = "426 Arlington Avenue, York, ON, M6C 3A2";
+
+        Intent searchAddress = new  Intent(Intent.ACTION_VIEW,Uri.parse("geo:0,0?q="+address));
+        startActivity(searchAddress); */
     }
 }
