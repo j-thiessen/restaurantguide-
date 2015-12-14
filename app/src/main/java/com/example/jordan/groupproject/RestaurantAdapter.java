@@ -12,7 +12,7 @@ import java.util.ArrayList;
 /**
  * Created by Jordan on 2015-12-10.
  */
-public class RestaurantAdapter extends ArrayAdapter<Restaurant> {
+public class RestaurantAdapter extends ArrayAdapter<Restaurant>  {
 
     public RestaurantAdapter(Context context, ArrayList<Restaurant> restaurants) {
         super(context, 0, restaurants);
