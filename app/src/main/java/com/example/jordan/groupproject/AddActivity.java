@@ -1,5 +1,6 @@
 package com.example.jordan.groupproject;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
@@ -47,9 +48,10 @@ public class AddActivity extends AppCompatActivity {
         description =  ((EditText)findViewById(R.id.editDescription)).getText().toString();
         tags =  ((EditText)findViewById(R.id.editTags)).getText().toString();
 
-
         DBHandler dbHelper = new DBHandler(this);
         dbHelper.addRestaurant(name, address, number,description,tags);
 
+        Intent map = new Intent(this, ViewActivity.class);
+        startActivity(map);
     }
 }
