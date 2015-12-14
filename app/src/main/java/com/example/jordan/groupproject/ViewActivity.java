@@ -14,9 +14,7 @@ import java.util.ArrayList;
 
 public class ViewActivity extends AppCompatActivity {
 
-    ArrayList<Restaurant> restaurantList = new ArrayList<Restaurant>();
-    int index = 0;
-    ListView listView;
+    ArrayList<Restaurant> restaurantList = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,6 +52,7 @@ public class ViewActivity extends AppCompatActivity {
         }
 
         final ListView lvItems = (ListView) findViewById(R.id.lvAll);
+
         lvItems.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {

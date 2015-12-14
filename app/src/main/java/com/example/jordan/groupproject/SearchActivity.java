@@ -1,6 +1,7 @@
 package com.example.jordan.groupproject;
 
 import android.content.Intent;
+import android.database.Cursor;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -9,11 +10,12 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class SearchActivity extends AppCompatActivity implements View.OnClickListener {
 
-    ListView listView;
+    ArrayList<Restaurant> restaurantList = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -21,7 +23,6 @@ public class SearchActivity extends AppCompatActivity implements View.OnClickLis
         setContentView(R.layout.activity_search);
 
         findViewById(R.id.btnSearchSubmit).setOnClickListener(this);
-
 
     }
 
@@ -49,21 +50,47 @@ public class SearchActivity extends AppCompatActivity implements View.OnClickLis
 
     @Override
     public void onClick(View v) {
+        String name, address, number, description, tags;
+        final String input = findViewById(R.id.editSearch).toString();
+        int x = 0;
 
-        String[] values = new String[]{
-                "",
-                "IT'S ALL ABOUT RESULTS",
-                "RESULTS RESULTS RESULTS"
-        };
-        ListView listView = (ListView) findViewById(R.id.lstResults);
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, android.R.id.text1, values);
-        listView.setAdapter(adapter);
+        DBHandler dbHelper = new DBHandler(this);
 
-        switch (v.getId()){
+        Cursor c = dbHelper.getAllRestaurants();
+        //////////////
+        // we need something like
+        // Cursor d = dbHelper.getRestaurant(x++);
+        // and loop through looking for 'input'
+        /////////////
 
-            case R.id.btnSearchSubmit:
-                    listView.setVisibility(View.VISIBLE);
-                break;
-       }
+        if(c.moveToFirst()) {
+
+            while (!c.isAfterLast()) {
+
+
+                name = c.getString(c.getColumnIndexOrThrow((RestaurantContract.Restaurants.COLUMN_NAME_NAME)));
+
+                address = c.getString(c.getColumnIndexOrThrow((RestaurantContract.Restaurants.COLUMN_NAME_ADDRESS)));
+
+                number = c.getString(c.getColumnIndexOrThrow((RestaurantContract.Restaurants.COLUMN_NAME_NUMBER)));
+
+                description = c.getString(c.getColumnIndexOrThrow((RestaurantContract.Restaurants.COLUMN_NAME_DESCRIPTION)));
+
+                tags = c.getString(c.getColumnIndexOrThrow((RestaurantContract.Restaurants.COLUMN_NAME_TAGS)));
+
+                Restaurant rest = new Restaurant();
+                rest.setName(name);
+                rest.setAddress(address);
+                rest.setNumber(number);
+                rest.setDescription(description);
+                rest.setTags(tags);
+                rest.setId(c.getInt(c.getColumnIndexOrThrow((RestaurantContract.Restaurants._ID))));
+                restaurantList.add(rest);
+                c.moveToNext();
+            }
+
+            final ListView lvItems = (ListView) findViewById(R.id.lvResults);
+            lvItems.setAdapter(new RestaurantAdapter(this, restaurantList));
+        }
     }
 }
