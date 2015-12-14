@@ -35,6 +35,8 @@ public class ViewActivity extends AppCompatActivity {
 
                 address = c.getString(c.getColumnIndexOrThrow((RestaurantContract.Restaurants.COLUMN_NAME_ADDRESS)));
 
+                number = c.getString(c.getColumnIndexOrThrow((RestaurantContract.Restaurants.COLUMN_NAME_NUMBER)));
+
                 description = c.getString(c.getColumnIndexOrThrow((RestaurantContract.Restaurants.COLUMN_NAME_DESCRIPTION)));
 
                 tags = c.getString(c.getColumnIndexOrThrow((RestaurantContract.Restaurants.COLUMN_NAME_TAGS)));
@@ -42,6 +44,7 @@ public class ViewActivity extends AppCompatActivity {
                 Restaurant rest = new Restaurant();
                 rest.setName(name);
                 rest.setAddress(address);
+                rest.setNumber(number);
                 rest.setDescription(description);
                 rest.setTags(tags);
                 rest.setId(c.getInt(c.getColumnIndexOrThrow((RestaurantContract.Restaurants._ID))));
@@ -57,7 +60,7 @@ public class ViewActivity extends AppCompatActivity {
                 int itemPosition = position;
                 long itemValue = ((Restaurant)lvItems.getItemAtPosition(position)).getId();
                 Intent intent = new Intent(ViewActivity.this, SingleActivity.class);
-                intent.putExtra("speaker_id", itemValue);
+                intent.putExtra("restaurant_id", itemValue);
                 startActivity(intent);
             }
         });

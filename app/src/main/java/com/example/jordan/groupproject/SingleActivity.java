@@ -14,7 +14,7 @@ public class SingleActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_single);
 
-        String name, bio, email, affiliation;
+        String name, address, number, description, tags;
 
         long id = getIntent().getLongExtra("restaurant_id", 0);
 

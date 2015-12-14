@@ -6,14 +6,6 @@ public class RestaurantContract {
 
     private RestaurantContract() {}
 
-    // first decide what we will store:
-    //  presenters
-    // _id (will be added automatically when we inherit from the BaseColumn specification)
-    // first name
-    // bio
-    // email
-
-    // if you have another table called ie Sessions just create another class below the Presenters class
 
     public static abstract class Restaurants implements BaseColumns {
         // first set up the table and columns
@@ -31,8 +23,8 @@ public class RestaurantContract {
                 + _ID + " INTEGER PRIMARY KEY, "
                 + COLUMN_NAME_NAME + " TEXT, "
                 + COLUMN_NAME_ADDRESS + " TEXT, "
-                + COLUMN_NAME_NUMBER + " TEXT"
-                + COLUMN_NAME_DESCRIPTION + " TEXT"
+                + COLUMN_NAME_NUMBER + " TEXT,"
+                + COLUMN_NAME_DESCRIPTION + " TEXT,"
                 + COLUMN_NAME_TAGS + " TEXT"
                 + ")";
 

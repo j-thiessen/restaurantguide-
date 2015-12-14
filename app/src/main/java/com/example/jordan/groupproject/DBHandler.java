@@ -8,7 +8,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 public class DBHandler extends SQLiteOpenHelper {
     private static final String DATABASE_NAME = "restaurant.db";
-    private static final int DATABASE_VERSION = 3;
+    private static final int DATABASE_VERSION = 10;
 
     public DBHandler(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
