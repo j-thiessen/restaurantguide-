@@ -42,7 +42,7 @@ public class AddActivity extends AppCompatActivity {
         String name, address, number,description,tags;
 
         name = ((EditText)findViewById(R.id.editName)).getText().toString();
-        address = ((EditText)findViewById(R.id.editAddress)).getText().toString();
+        address = ((EditText)findViewById(R.id.editAddress)).getText().toString() + ", " + ((EditText)findViewById(R.id.editPC)).getText().toString();
         number = ((EditText)findViewById(R.id.editNumber)).getText().toString();
         description =  ((EditText)findViewById(R.id.editDescription)).getText().toString();
         tags =  ((EditText)findViewById(R.id.editTags)).getText().toString();

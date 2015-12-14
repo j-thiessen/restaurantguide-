@@ -65,15 +65,6 @@ public class SingleActivity extends AppCompatActivity implements View.OnClickLis
         return super.onOptionsItemSelected(item);
     }
 
-    public void openMap(String address) {
-        Intent intent = new Intent(android.content.Intent.ACTION_VIEW);
-        Uri u = Uri.parse("http://maps.google.com/maps?daddr=" + address);
-        intent.setClassName("com.google.android.apps.maps", "com.google.android.maps.MapsActivity");
-        intent.setData(u);
-        startActivity(intent);
-    }
-
-
     @Override
     public void onClick(View v) {
         TextView address = (TextView) findViewById(R.id.txtAddress);
