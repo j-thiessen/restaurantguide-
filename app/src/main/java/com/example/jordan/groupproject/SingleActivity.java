@@ -1,18 +1,22 @@
 package com.example.jordan.groupproject;
 
+import android.content.Intent;
 import android.database.Cursor;
+import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.TextView;
 
-public class SingleActivity extends AppCompatActivity {
+public class SingleActivity extends AppCompatActivity implements View.OnClickListener {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_single);
+        findViewById(R.id.btnOpenMap).setOnClickListener(this);
 
         String name, address, number, description, tags;
 
@@ -36,7 +40,6 @@ public class SingleActivity extends AppCompatActivity {
 
             tags = c.getString(c.getColumnIndexOrThrow((RestaurantContract.Restaurants.COLUMN_NAME_TAGS)));
             ((TextView) findViewById(R.id.txtTags)).setText(tags);
-
         }
     }
 
@@ -60,5 +63,26 @@ public class SingleActivity extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    public void openMap(String address) {
+        Intent intent = new Intent(android.content.Intent.ACTION_VIEW);
+        Uri u = Uri.parse("http://maps.google.com/maps?daddr=" + address);
+        intent.setClassName("com.google.android.apps.maps", "com.google.android.maps.MapsActivity");
+        intent.setData(u);
+        startActivity(intent);
+    }
+
+
+    @Override
+    public void onClick(View v) {
+        TextView address = (TextView) findViewById(R.id.txtAddress);
+        Intent intent = new Intent(android.content.Intent.ACTION_VIEW);
+        Uri u = Uri.parse("http://maps.google.com/maps?daddr="
+                + address.getText().toString()
+                );
+        intent.setClassName("com.google.android.apps.maps", "com.google.android.maps.MapsActivity");
+        intent.setData(u);
+        startActivity(intent);
     }
 }

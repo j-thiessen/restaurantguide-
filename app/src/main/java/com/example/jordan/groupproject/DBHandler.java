@@ -8,7 +8,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 public class DBHandler extends SQLiteOpenHelper {
     private static final String DATABASE_NAME = "restaurant.db";
-    private static final int DATABASE_VERSION = 12;
+    private static final int DATABASE_VERSION = 22;
 
     public DBHandler(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
@@ -86,7 +86,7 @@ public class DBHandler extends SQLiteOpenHelper {
         values.put(RestaurantContract.Restaurants.COLUMN_NAME_ADDRESS,"123 Unknown Street");
         values.put(RestaurantContract.Restaurants.COLUMN_NAME_NUMBER,"416-123-4567");
         values.put(RestaurantContract.Restaurants.COLUMN_NAME_DESCRIPTION,"This is the description of this restaurant");
-        values.put(RestaurantContract.Restaurants.COLUMN_NAME_TAGS,"Italian,Pasta, Vegeterian");
+        values.put(RestaurantContract.Restaurants.COLUMN_NAME_TAGS,"Italian, Pasta, Vegeterian");
 
         long id = db.insert(RestaurantContract.Restaurants.TABLE_NAME, null, values);
 
