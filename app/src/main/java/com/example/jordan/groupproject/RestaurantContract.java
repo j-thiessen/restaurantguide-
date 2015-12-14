@@ -23,8 +23,8 @@ public class RestaurantContract {
                 + _ID + " INTEGER PRIMARY KEY, "
                 + COLUMN_NAME_NAME + " TEXT, "
                 + COLUMN_NAME_ADDRESS + " TEXT, "
-                + COLUMN_NAME_NUMBER + " TEXT,"
-                + COLUMN_NAME_DESCRIPTION + " TEXT,"
+                + COLUMN_NAME_NUMBER + " TEXT, "
+                + COLUMN_NAME_DESCRIPTION + " TEXT, "
                 + COLUMN_NAME_TAGS + " TEXT"
                 + ")";
 
