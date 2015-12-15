@@ -117,4 +117,16 @@
         android:layout_toRightOf="@+id/textViewAddress"
         android:layout_toEndOf="@+id/textViewAddress" />
 
+    <Button
+        android:layout_width="150dp"
+        android:layout_height="50dp"
+        android:text="Share it"
+        android:textSize="20sp"
+        android:drawableRight="@drawable/star_icon"
+        android:id="@+id/shareit"
+        android:textColor="#ffffff"
+        android:background="#20b2aa"
+        android:layout_marginTop="40dp"
+        android:typeface="serif"/>
+
 </RelativeLayout>

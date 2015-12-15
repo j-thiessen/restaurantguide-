@@ -3,22 +3,30 @@ package com.example.jordan.groupproject;
 import android.content.Intent;
 import android.database.Cursor;
 import android.net.Uri;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 
 public class SingleActivity extends AppCompatActivity implements View.OnClickListener {
+    String name, address, number, description, tags;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_single);
-        findViewById(R.id.btnOpenMap).setOnClickListener(this);
 
-        String name, address, number, description, tags;
+        Button btn_share=(Button)findViewById(R.id.shareit);
+        btn_share.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                shareIt();
+             }
+        });
+
+
 
         long id = getIntent().getLongExtra("restaurant_id", 0);
 
@@ -42,6 +50,16 @@ public class SingleActivity extends AppCompatActivity implements View.OnClickLis
             ((TextView) findViewById(R.id.txtTags)).setText(tags);
         }
     }
+
+
+    private void shareIt() {
+        //sharing implementation here
+        String info = name + "\n"+address + "\n" + number;
+        Intent sharingIntent = new Intent(android.content.Intent.ACTION_SEND);
+        sharingIntent.setType("text/plain");
+        sharingIntent.putExtra(android.content.Intent.EXTRA_TEXT, info);
+        startActivity(Intent.createChooser(sharingIntent, "Share via"));
+        }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
