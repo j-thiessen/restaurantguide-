@@ -11,8 +11,12 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+<<<<<<< HEAD
 import android.widget.EditText;
 import android.widget.RatingBar;
+=======
+import android.widget.ImageButton;
+>>>>>>> refs/remotes/origin/lex2
 import android.widget.TextView;
 
 import com.facebook.CallbackManager;
@@ -36,7 +40,7 @@ public class SingleActivity extends AppCompatActivity implements View.OnClickLis
 
         setContentView(R.layout.activity_single);
 
-        Button btn_share=(Button)findViewById(R.id.shareit);
+        ImageButton btn_share=(ImageButton)findViewById(R.id.shareit);
         btn_share.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 shareIt();
@@ -44,7 +48,7 @@ public class SingleActivity extends AppCompatActivity implements View.OnClickLis
         });
 
 
-        Button btn_facebook=(Button)findViewById(R.id.facebook_btn);
+        ImageButton btn_facebook=(ImageButton)findViewById(R.id.facebook_btn);
         btn_facebook.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 facebookShare();
