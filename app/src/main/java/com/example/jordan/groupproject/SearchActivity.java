@@ -5,6 +5,13 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+<<<<<<< HEAD
+=======
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.EditText;
+import android.widget.ListView;
+>>>>>>> origin/lex2
 
 import java.util.ArrayList;
 
@@ -18,7 +25,6 @@ public class SearchActivity extends AppCompatActivity implements View.OnClickLis
         setContentView(R.layout.activity_search);
 
         findViewById(R.id.btnSearchSubmit).setOnClickListener(this);
-
     }
 
     @Override
@@ -46,6 +52,7 @@ public class SearchActivity extends AppCompatActivity implements View.OnClickLis
     @Override
     public void onClick(View v) {
 
+<<<<<<< HEAD
         //EditText searchTerm = (EditText)findViewById(R.id.textView);
 
         //DBHandler dbHelper = new DBHandler(this);
@@ -56,5 +63,61 @@ public class SearchActivity extends AppCompatActivity implements View.OnClickLis
        // RestaurantAdapter restaurantCursorAdapter = new RestaurantAdapter(this, searchCursor);
        // items.setAdapter(restaurantCursorAdapter);
      //   items.setOnItemClickListener(this);
+=======
+        switch (v.getId()) {
+            case R.id.btnSearchSubmit:
+
+                ArrayList<Restaurant> restaurantList = new ArrayList<>();
+                String name, address, number, description, tags;
+                EditText searchTerm = (EditText) findViewById(R.id.editSearch);
+                DBHandler dbHelper = new DBHandler(this);
+                SQLiteDatabase db = dbHelper.getWritableDatabase();
+                Cursor c = db.rawQuery("SELECT * FROM restaurants WHERE name LIKE \'%" + searchTerm.getText() + "%\'", null);
+
+                if (c.moveToFirst()) {
+
+                    while (!c.isAfterLast()) {
+                        name = c.getString(c.getColumnIndexOrThrow((RestaurantContract.Restaurants.COLUMN_NAME_NAME)));
+
+                        address = c.getString(c.getColumnIndexOrThrow((RestaurantContract.Restaurants.COLUMN_NAME_ADDRESS)));
+
+                        number = c.getString(c.getColumnIndexOrThrow((RestaurantContract.Restaurants.COLUMN_NAME_NUMBER)));
+
+                        description = c.getString(c.getColumnIndexOrThrow((RestaurantContract.Restaurants.COLUMN_NAME_DESCRIPTION)));
+
+                        tags = c.getString(c.getColumnIndexOrThrow((RestaurantContract.Restaurants.COLUMN_NAME_TAGS)));
+
+                        Restaurant rest = new Restaurant();
+                        rest.setName(name);
+                        rest.setAddress(address);
+                        rest.setNumber(number);
+                        rest.setDescription(description);
+                        rest.setTags(tags);
+                        rest.setId(c.getInt(c.getColumnIndexOrThrow((RestaurantContract.Restaurants._ID))));
+                        restaurantList.add(rest);
+                        c.moveToNext();
+                    }
+                }
+
+                final ListView items = (ListView) findViewById(R.id.lvResults);
+
+                items.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                    @Override
+                    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                        int itemPosition = position;
+                        long itemValue = ((Restaurant)items.getItemAtPosition(itemPosition)).getId();
+                        Intent intent = new Intent(SearchActivity.this, SingleActivity.class);
+                        intent.putExtra("restaurant_id", itemValue);
+                        startActivity(intent);
+                    }
+                });
+
+                // the problem here is that the searchCursor needs to somehow be converted to an ArrayList
+                RestaurantAdapter restaurantCursorAdapter = new RestaurantAdapter(this, restaurantList);
+                items.setAdapter(restaurantCursorAdapter);
+                //items.setOnItemClickListener(this);
+                break;
+        }
+>>>>>>> origin/lex2
     }
 }
