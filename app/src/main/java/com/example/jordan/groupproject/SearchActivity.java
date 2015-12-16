@@ -3,27 +3,20 @@ package com.example.jordan.groupproject;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
-<<<<<<< HEAD
+
 import android.os.Bundle;
-=======
->>>>>>> origin/lex2
+
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-<<<<<<< HEAD
 
-=======
->>>>>>> origin/lex2
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ListView;
-<<<<<<< HEAD
 
-=======
->>>>>>> origin/lex2
 
 import java.util.ArrayList;
 import java.util.List;
@@ -65,7 +58,7 @@ public class SearchActivity extends AppCompatActivity implements View.OnClickLis
     @Override
     public void onClick(View v) {
 
-<<<<<<< HEAD
+
 
         //EditText searchTerm = (EditText)findViewById(R.id.textView);
 
@@ -78,8 +71,7 @@ public class SearchActivity extends AppCompatActivity implements View.OnClickLis
        // items.setAdapter(restaurantCursorAdapter);
      //   items.setOnItemClickListener(this);
 
-=======
->>>>>>> origin/lex2
+
         switch (v.getId()) {
             case R.id.btnSearchSubmit:
 
@@ -134,9 +126,6 @@ public class SearchActivity extends AppCompatActivity implements View.OnClickLis
                 //items.setOnItemClickListener(this);
                 break;
         }
-<<<<<<< HEAD
 
-=======
->>>>>>> origin/lex2
     }
 }

@@ -11,6 +11,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 import com.twitter.sdk.android.Twitter;
@@ -58,7 +59,12 @@ public class SingleActivity extends AppCompatActivity implements View.OnClickLis
             }
         });
 
-
+        ImageButton btn_twitter=(ImageButton)findViewById(R.id.twitter_btn);
+        btn_twitter.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                twitterShare();
+            }
+        });
 
         long id = getIntent().getLongExtra("restaurant_id", 0);
 
