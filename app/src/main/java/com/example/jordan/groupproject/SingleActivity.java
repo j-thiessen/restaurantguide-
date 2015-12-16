@@ -44,7 +44,7 @@ public class SingleActivity extends AppCompatActivity implements View.OnClickLis
 
         setContentView(R.layout.activity_single);
 
-        Button btn_share=(Button)findViewById(R.id.shareit);
+        ImageButton btn_share=(ImageButton)findViewById(R.id.shareit);
         btn_share.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 shareIt();
@@ -52,7 +52,7 @@ public class SingleActivity extends AppCompatActivity implements View.OnClickLis
         });
 
 
-        Button btn_facebook=(Button)findViewById(R.id.facebook_btn);
+        ImageButton btn_facebook=(ImageButton)findViewById(R.id.facebook_btn);
         btn_facebook.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 facebookShare();
