@@ -174,8 +174,6 @@ public class SingleActivity extends AppCompatActivity implements View.OnClickLis
 
     @Override
     public void onClick(View v) {
-        switch (v.getId()) {
-            case R.id.facebook_btn:
 
                 TextView address = (TextView) findViewById(R.id.txtAddress);
                 Intent intent = new Intent(android.content.Intent.ACTION_VIEW);
@@ -185,15 +183,9 @@ public class SingleActivity extends AppCompatActivity implements View.OnClickLis
                 intent.setClassName("com.google.android.apps.maps", "com.google.android.maps.MapsActivity");
                 intent.setData(u);
                 startActivity(intent);
-                break;
 
-            case R.id.shareit:
-
-                // dunno wtf this is
-
-                break;
         }
-    }
+
 
     public void addListenerOnRatingBar(final DBHandler dbHelper) {
 
