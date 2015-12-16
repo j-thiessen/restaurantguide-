@@ -82,7 +82,7 @@ public class SearchActivity extends AppCompatActivity implements View.OnClickLis
                 EditText searchTerm = (EditText) findViewById(R.id.editSearch);
                 DBHandler dbHelper = new DBHandler(this);
                 SQLiteDatabase db = dbHelper.getWritableDatabase();
-                Cursor c = db.rawQuery("SELECT * FROM restaurants WHERE name LIKE \'%" + searchTerm.getText() + "%\'", null);
+                Cursor c = db.rawQuery("SELECT * FROM restaurants WHERE name LIKE \'%" + searchTerm.getText() + "%\' OR tags LIKE \'&" + searchTerm.getText() + "&\'", null);
 
                 if (c.moveToFirst()) {
 
