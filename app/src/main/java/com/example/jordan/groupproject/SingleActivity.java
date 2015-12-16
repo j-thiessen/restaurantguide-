@@ -13,12 +13,12 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-<<<<<<< HEAD
+
 import android.widget.ImageButton;
-=======
+
 import android.widget.EditText;
 import android.widget.RatingBar;
->>>>>>> refs/remotes/origin/jordan3
+
 import android.widget.TextView;
 
 import com.twitter.sdk.android.Twitter;
@@ -66,7 +66,7 @@ public class SingleActivity extends AppCompatActivity implements View.OnClickLis
             }
         });
 
-<<<<<<< HEAD
+
         ImageButton btn_twitter=(ImageButton)findViewById(R.id.twitter_btn);
         btn_twitter.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
@@ -74,8 +74,7 @@ public class SingleActivity extends AppCompatActivity implements View.OnClickLis
             }
         });
 
-=======
->>>>>>> refs/remotes/origin/jordan3
+
         long id = getIntent().getLongExtra("restaurant_id", 0);
 
         DBHandler dbHelper = new DBHandler(this);
