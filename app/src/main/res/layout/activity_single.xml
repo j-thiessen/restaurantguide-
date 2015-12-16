@@ -113,8 +113,7 @@
         android:text="click to open address"
         android:id="@+id/btnOpenMap"
         android:layout_gravity="center_horizontal"
-        android:layout_marginTop="36dp"
-        android:layout_below="@+id/txtTags"
+        android:layout_centerVertical="true"
         android:layout_toRightOf="@+id/textViewAddress"
         android:layout_toEndOf="@+id/textViewAddress" />
 
@@ -128,18 +127,26 @@
         android:textColor="#ffffff"
         android:background="#20b2aa"
         android:typeface="serif"
-        android:layout_centerVertical="true"
+        android:layout_above="@+id/facebook_btn"
         android:layout_alignLeft="@+id/txtTags"
         android:layout_alignStart="@+id/txtTags" />
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:drawableTop="@drawable/"
         android:id="@+id/facebook_btn"
         android:layout_marginBottom="65dp"
         android:layout_alignParentBottom="true"
         android:layout_alignRight="@+id/txtDescription"
         android:layout_alignEnd="@+id/txtDescription" />
+
+    <RatingBar
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/ratingBar"
+        android:layout_gravity="center_horizontal"
+        android:layout_above="@+id/btnOpenMap"
+        android:layout_toRightOf="@+id/textViewName"
+        android:layout_toEndOf="@+id/textViewName" />
 
 </RelativeLayout>
