@@ -90,6 +90,9 @@
             android:label="@string/title_activity_single"
             android:parentActivityName=".ViewActivity">
         </activity>
+        <meta-data
+            android:name="io.fabric.ApiKey"
+            android:value="bd1ae97fe48acd35fb9a5f535cae2f1470950c6e" />
     </application>
 
 </manifest>
