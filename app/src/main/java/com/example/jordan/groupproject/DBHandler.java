@@ -8,7 +8,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 public class DBHandler extends SQLiteOpenHelper {
     private static final String DATABASE_NAME = "restaurant.db";
-    private static final int DATABASE_VERSION = 22;
+    private static final int DATABASE_VERSION = 25;
 
     public DBHandler(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
@@ -40,7 +40,8 @@ public class DBHandler extends SQLiteOpenHelper {
                 RestaurantContract.Restaurants.COLUMN_NAME_ADDRESS,
                 RestaurantContract.Restaurants.COLUMN_NAME_NUMBER,
                 RestaurantContract.Restaurants.COLUMN_NAME_DESCRIPTION,
-                RestaurantContract.Restaurants.COLUMN_NAME_TAGS
+                RestaurantContract.Restaurants.COLUMN_NAME_TAGS,
+                RestaurantContract.Restaurants.COLUMN_NAME_RATING
         };
 
         // all the nulls take care of where, group by, having etc parameters
@@ -64,7 +65,8 @@ public class DBHandler extends SQLiteOpenHelper {
                 RestaurantContract.Restaurants.COLUMN_NAME_ADDRESS,
                 RestaurantContract.Restaurants.COLUMN_NAME_NUMBER,
                 RestaurantContract.Restaurants.COLUMN_NAME_DESCRIPTION,
-                RestaurantContract.Restaurants.COLUMN_NAME_TAGS
+                RestaurantContract.Restaurants.COLUMN_NAME_TAGS,
+                RestaurantContract.Restaurants.COLUMN_NAME_RATING
         };
 
         // all the nulls take care of where, group by, having etc parameters
@@ -87,6 +89,7 @@ public class DBHandler extends SQLiteOpenHelper {
         values.put(RestaurantContract.Restaurants.COLUMN_NAME_NUMBER,"416-123-4567");
         values.put(RestaurantContract.Restaurants.COLUMN_NAME_DESCRIPTION,"This is the description of this restaurant");
         values.put(RestaurantContract.Restaurants.COLUMN_NAME_TAGS,"Italian, Pasta, Vegeterian");
+        values.put(RestaurantContract.Restaurants.COLUMN_NAME_RATING,"2");
 
         long id = db.insert(RestaurantContract.Restaurants.TABLE_NAME, null, values);
 
@@ -104,9 +107,16 @@ public class DBHandler extends SQLiteOpenHelper {
         values.put(RestaurantContract.Restaurants.COLUMN_NAME_NUMBER, number);
         values.put(RestaurantContract.Restaurants.COLUMN_NAME_DESCRIPTION, description);
         values.put(RestaurantContract.Restaurants.COLUMN_NAME_TAGS, tags);
+        values.put(RestaurantContract.Restaurants.COLUMN_NAME_RATING, "0");
 
         long id = db.insert(RestaurantContract.Restaurants.TABLE_NAME, null, values);
 
         System.out.println("Yay!");
+    }
+
+    public void addRating(String rating, String name) {
+        SQLiteDatabase db = getWritableDatabase();
+
+        db.execSQL("UPDATE restaurants SET rating = '" + rating + "' WHERE name = '" + name + "'");
     }
 }

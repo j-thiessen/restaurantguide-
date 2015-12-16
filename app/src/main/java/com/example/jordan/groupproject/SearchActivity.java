@@ -3,15 +3,26 @@ package com.example.jordan.groupproject;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+<<<<<<< HEAD
+
+=======
+>>>>>>> refs/remotes/origin/jordan3
+import android.os.Bundle;
+
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ListView;
+<<<<<<< HEAD
+=======
+import android.widget.RatingBar;
+>>>>>>> refs/remotes/origin/jordan3
+
 
 import java.util.ArrayList;
 import java.util.List;
@@ -53,6 +64,26 @@ public class SearchActivity extends AppCompatActivity implements View.OnClickLis
     @Override
     public void onClick(View v) {
 
+
+<<<<<<< HEAD
+
+=======
+>>>>>>> refs/remotes/origin/jordan3
+        //EditText searchTerm = (EditText)findViewById(R.id.textView);
+
+        //DBHandler dbHelper = new DBHandler(this);
+        //SQLiteDatabase db = dbHelper.getWritableDatabase();
+        //Cursor searchCursor = db.rawQuery("SELECT * FROM restaurants WHERE name LIKE \'%" + searchTerm.getText() + "%\'", null);
+        //ListView items = (ListView)findViewById(R.id.lvResults);
+        // the problem here is that the searchCursor needs to somehow be converted to an ArrayList
+       // RestaurantAdapter restaurantCursorAdapter = new RestaurantAdapter(this, searchCursor);
+       // items.setAdapter(restaurantCursorAdapter);
+     //   items.setOnItemClickListener(this);
+
+<<<<<<< HEAD
+
+=======
+>>>>>>> refs/remotes/origin/jordan3
         switch (v.getId()) {
             case R.id.btnSearchSubmit:
 
@@ -107,5 +138,9 @@ public class SearchActivity extends AppCompatActivity implements View.OnClickLis
                 //items.setOnItemClickListener(this);
                 break;
         }
+<<<<<<< HEAD
+
+=======
+>>>>>>> refs/remotes/origin/jordan3
     }
 }
