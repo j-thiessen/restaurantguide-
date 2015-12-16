@@ -75,7 +75,7 @@ public class SingleActivity extends AppCompatActivity implements View.OnClickLis
 
     private void facebookShare(){
             ShareLinkContent linkContent = new ShareLinkContent.Builder()
-                    .setImageUrl(Uri.parse("http://i.imgur.com/BMpp4ER.jpg"))
+                    .setImageUrl(Uri.parse("http://i.imgur.com/8NYZ8Lc.jpg"))
                     .setContentTitle(name)
                     .setContentDescription(
                             description)
