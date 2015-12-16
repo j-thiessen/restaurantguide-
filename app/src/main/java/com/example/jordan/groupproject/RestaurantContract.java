@@ -15,7 +15,7 @@ public class RestaurantContract {
         public static final String COLUMN_NAME_NUMBER = "number";
         public static final String COLUMN_NAME_DESCRIPTION = "description";
         public static final String COLUMN_NAME_TAGS = "tags";
-
+        public static final String COLUMN_NAME_RATING = "rating";
 
         public static final String CREATE = "CREATE TABLE "
                 + TABLE_NAME
@@ -25,7 +25,8 @@ public class RestaurantContract {
                 + COLUMN_NAME_ADDRESS + " TEXT, "
                 + COLUMN_NAME_NUMBER + " TEXT, "
                 + COLUMN_NAME_DESCRIPTION + " TEXT, "
-                + COLUMN_NAME_TAGS + " TEXT"
+                + COLUMN_NAME_TAGS + " TEXT, "
+                + COLUMN_NAME_RATING + " TEXT "
                 + ")";
 
         public static final String DROP = "DROP TABLE " + TABLE_NAME;

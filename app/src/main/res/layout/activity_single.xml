@@ -102,6 +102,11 @@
         android:layout_height="wrap_content"
         android:text="click to open address"
         android:id="@+id/btnOpenMap"
+<<<<<<< HEAD
+=======
+        android:layout_gravity="center_horizontal"
+        android:layout_centerVertical="true"
+>>>>>>> refs/remotes/origin/jordan3
         android:layout_toRightOf="@+id/textViewAddress"
         android:layout_toEndOf="@+id/textViewAddress" />
 
@@ -115,6 +120,10 @@
         android:textColor="#ffffff"
         android:background="#20b2aa"
         android:typeface="serif"
+<<<<<<< HEAD
+=======
+        android:layout_above="@+id/facebook_btn"
+>>>>>>> refs/remotes/origin/jordan3
         android:layout_alignLeft="@+id/txtTags"
         android:layout_alignStart="@+id/txtTags" />
 
@@ -127,6 +136,7 @@
         android:layout_alignRight="@+id/txtDescription"
         android:layout_alignEnd="@+id/txtDescription" />
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 
 =======
@@ -311,4 +321,15 @@
 
 
     </LinearLayout>
+=======
+    <RatingBar
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/ratingBar"
+        android:layout_gravity="center_horizontal"
+        android:layout_above="@+id/btnOpenMap"
+        android:layout_toRightOf="@+id/textViewName"
+        android:layout_toEndOf="@+id/textViewName" />
+
+>>>>>>> refs/remotes/origin/jordan3
 </RelativeLayout>

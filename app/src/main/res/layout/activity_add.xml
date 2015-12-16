@@ -149,12 +149,6 @@
                     android:layout_alignParentRight="true"
                     android:layout_alignParentEnd="true" />
 
-                <RatingBar
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/ratingBar"
-                    android:layout_gravity="center_horizontal" />
-
                 <Button
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"

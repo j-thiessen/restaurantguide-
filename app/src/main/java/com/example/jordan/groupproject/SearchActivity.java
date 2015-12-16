@@ -3,7 +3,10 @@ package com.example.jordan.groupproject;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+<<<<<<< HEAD
 
+=======
+>>>>>>> refs/remotes/origin/jordan3
 import android.os.Bundle;
 
 import android.support.v7.app.AppCompatActivity;
@@ -13,9 +16,12 @@ import android.view.MenuItem;
 import android.view.View;
 
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ListView;
+<<<<<<< HEAD
+=======
+import android.widget.RatingBar;
+>>>>>>> refs/remotes/origin/jordan3
 
 
 import java.util.ArrayList;
@@ -59,7 +65,10 @@ public class SearchActivity extends AppCompatActivity implements View.OnClickLis
     public void onClick(View v) {
 
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> refs/remotes/origin/jordan3
         //EditText searchTerm = (EditText)findViewById(R.id.textView);
 
         //DBHandler dbHelper = new DBHandler(this);
@@ -71,7 +80,10 @@ public class SearchActivity extends AppCompatActivity implements View.OnClickLis
        // items.setAdapter(restaurantCursorAdapter);
      //   items.setOnItemClickListener(this);
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> refs/remotes/origin/jordan3
         switch (v.getId()) {
             case R.id.btnSearchSubmit:
 
@@ -126,6 +138,9 @@ public class SearchActivity extends AppCompatActivity implements View.OnClickLis
                 //items.setOnItemClickListener(this);
                 break;
         }
+<<<<<<< HEAD
 
+=======
+>>>>>>> refs/remotes/origin/jordan3
     }
 }
