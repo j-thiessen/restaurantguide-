@@ -122,7 +122,7 @@
         android:layout_height="50dp"
         android:text="Share it"
         android:textSize="20sp"
-        android:drawableRight="@drawable/share_icon"
+        android:drawableRight="@drawable/share_icon_1"
         android:id="@+id/shareit"
         android:textColor="#ffffff"
         android:background="#20b2aa"
@@ -134,7 +134,7 @@
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Facebook"
+        android:drawableTop="@drawable/"
         android:id="@+id/facebook_btn"
         android:layout_marginBottom="65dp"
         android:layout_alignParentBottom="true"
