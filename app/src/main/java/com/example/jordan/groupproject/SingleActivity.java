@@ -11,19 +11,40 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.facebook.CallbackManager;
+import com.facebook.FacebookSdk;
+import com.facebook.share.model.ShareLinkContent;
+import com.facebook.share.widget.ShareDialog;
+
 public class SingleActivity extends AppCompatActivity implements View.OnClickListener {
     String name, address, number, description, tags;
+
+    CallbackManager callbackManager;
+    ShareDialog shareDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        FacebookSdk.sdkInitialize(getApplicationContext());
+        callbackManager = CallbackManager.Factory.create();
+        shareDialog = new ShareDialog(this);
+
         setContentView(R.layout.activity_single);
 
         Button btn_share=(Button)findViewById(R.id.shareit);
         btn_share.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 shareIt();
-             }
+            }
+        });
+
+
+        Button btn_facebook=(Button)findViewById(R.id.facebook_btn);
+        btn_facebook.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                facebookShare();
+            }
         });
 
 
@@ -51,6 +72,23 @@ public class SingleActivity extends AppCompatActivity implements View.OnClickLis
         }
     }
 
+
+    private void facebookShare(){
+            ShareLinkContent linkContent = new ShareLinkContent.Builder()
+                    .setImageUrl(Uri.parse("http://i.imgur.com/AkKDu31.jpg?1"))
+                    .setContentTitle(name)
+                    .setContentDescription(
+                            description)
+                    .setContentUrl(Uri.parse("http://WeHaveNoWebsite.com"))
+                    .build();
+
+            shareDialog.show(linkContent);
+        }
+
+    protected void onActivityResult(final int requestCode, final int resultCode, final Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        callbackManager.onActivityResult(requestCode, resultCode, data);
+    }
 
     private void shareIt() {
         //sharing implementation here

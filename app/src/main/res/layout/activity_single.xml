@@ -126,7 +126,19 @@
         android:id="@+id/shareit"
         android:textColor="#ffffff"
         android:background="#20b2aa"
-        android:layout_marginTop="40dp"
-        android:typeface="serif"/>
+        android:typeface="serif"
+        android:layout_centerVertical="true"
+        android:layout_alignLeft="@+id/txtTags"
+        android:layout_alignStart="@+id/txtTags" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Facebook"
+        android:id="@+id/facebook_btn"
+        android:layout_marginBottom="65dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignRight="@+id/txtDescription"
+        android:layout_alignEnd="@+id/txtDescription" />
 
 </RelativeLayout>
