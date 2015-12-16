@@ -2,7 +2,21 @@
 
     <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
-        <!-- Customize your theme here. -->
+        <item name="android:buttonBarStyle">@style/buttonStyle</item>
     </style>
 
+    <style name="buttonStyle" parent="Theme.AppCompat.Light.DarkActionBar">
+        <item name="android:background">@color/thisBlue</item>
+        <item name="android:textColor">@color/thisRed</item>
+        <item name="android:layout_width">fill_parent</item>
+        <item name="android:drawablePadding">1dip</item>
+        <item name="android:paddingLeft">3dip</item>
+        <item name="android:paddingRight">3dip</item>
+        <item name="android:paddingBottom">3dip</item>
+        <item name="android:paddingTop">3dip</item>
+        <item name="android:layout_marginBottom">3dip</item>
+    </style>
+
+    <color name="thisBlue">#d5fbfb</color>
+    <color name="thisRed">#9c1834</color>
 </resources>

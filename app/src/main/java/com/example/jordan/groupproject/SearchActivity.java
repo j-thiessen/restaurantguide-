@@ -60,8 +60,8 @@ public class SearchActivity extends AppCompatActivity implements View.OnClickLis
         Cursor searchCursor = db.rawQuery("SELECT * FROM restaurants WHERE name LIKE \'%" + searchTerm.getText() + "%\'", null);
         ListView items = (ListView)findViewById(R.id.lvResults);
         // the problem here is that the searchCursor needs to somehow be converted to an ArrayList
-        RestaurantAdapter restaurantCursorAdapter = new RestaurantAdapter(this, searchCursor);
-        items.setAdapter(restaurantCursorAdapter);
-        items.setOnItemClickListener(this);
+     //   RestaurantAdapter restaurantCursorAdapter = new RestaurantAdapter(this, searchCursor);
+      //  items.setAdapter(restaurantCursorAdapter);
+     //   items.setOnItemClickListener(this);
     }
 }
