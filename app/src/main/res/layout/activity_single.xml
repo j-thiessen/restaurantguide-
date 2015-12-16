@@ -23,7 +23,6 @@
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:text="Address"
         android:id="@+id/textViewAddress"
-        android:layout_below="@+id/textViewName"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
 
@@ -33,7 +32,6 @@
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:text="Phone"
         android:id="@+id/textViewNumber"
-        android:layout_below="@+id/textViewAddress"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
 
@@ -43,7 +41,6 @@
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:text="Description"
         android:id="@+id/textViewDescription"
-        android:layout_below="@+id/textViewNumber"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
 
@@ -53,7 +50,6 @@
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:text="Tags"
         android:id="@+id/textViewTags"
-        android:layout_below="@+id/textViewDescription"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
 
@@ -63,7 +59,6 @@
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="Name"
         android:id="@+id/txtName"
-        android:layout_above="@+id/textViewAddress"
         android:layout_alignLeft="@+id/txtNumber"
         android:layout_alignStart="@+id/txtNumber" />
 
@@ -73,7 +68,6 @@
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="Address"
         android:id="@+id/txtAddress"
-        android:layout_alignBottom="@+id/textViewAddress"
         android:layout_alignLeft="@+id/txtName"
         android:layout_alignStart="@+id/txtName" />
 
@@ -83,7 +77,6 @@
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="Phone"
         android:id="@+id/txtNumber"
-        android:layout_above="@+id/textViewDescription"
         android:layout_alignLeft="@+id/txtTags"
         android:layout_alignStart="@+id/txtTags" />
 
@@ -92,10 +85,7 @@
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="Tags"
-        android:id="@+id/txtTags"
-        android:layout_below="@+id/textViewDescription"
-        android:layout_toRightOf="@+id/textViewDescription"
-        android:layout_toEndOf="@+id/textViewDescription" />
+        android:id="@+id/txtTags" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -103,7 +93,6 @@
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="Description"
         android:id="@+id/txtDescription"
-        android:layout_below="@+id/txtNumber"
         android:layout_alignLeft="@+id/txtNumber"
         android:layout_alignStart="@+id/txtNumber" />
 
@@ -112,9 +101,6 @@
         android:layout_height="wrap_content"
         android:text="click to open address"
         android:id="@+id/btnOpenMap"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginTop="36dp"
-        android:layout_below="@+id/txtTags"
         android:layout_toRightOf="@+id/textViewAddress"
         android:layout_toEndOf="@+id/textViewAddress" />
 
@@ -123,12 +109,11 @@
         android:layout_height="50dp"
         android:text="Share it"
         android:textSize="20sp"
-        android:drawableRight="@drawable/share_icon_1"
+        android:drawableRight="@drawable/sharethis"
         android:id="@+id/shareit"
         android:textColor="#ffffff"
         android:background="#20b2aa"
         android:typeface="serif"
-        android:layout_centerVertical="true"
         android:layout_alignLeft="@+id/txtTags"
         android:layout_alignStart="@+id/txtTags" />
 
@@ -141,6 +126,49 @@
         android:layout_alignRight="@+id/txtDescription"
         android:layout_alignEnd="@+id/txtDescription" />
 
+<<<<<<< HEAD
 
+=======
+    <ImageButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/imageButton"
+        android:layout_above="@+id/facebook_btn"
+        android:layout_toRightOf="@+id/textViewName"
+        android:layout_toEndOf="@+id/textViewName"
+        android:layout_marginBottom="30dp"
+        android:src="@drawable/sharethis"
+        android:background="@color/thisBlue" />
+
+    <ImageButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/imageButton2"
+        android:layout_alignTop="@+id/imageButton"
+        android:layout_toLeftOf="@+id/facebook_btn"
+        android:layout_toStartOf="@+id/facebook_btn"
+        android:background="@color/thisBlue"
+        android:src="@drawable/twitter" />
+
+    <ImageButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/imageButton3"
+        android:src="@drawable/facebook"
+        android:background="@color/thisBlue"
+        android:layout_alignTop="@+id/imageButton2"
+        android:layout_alignRight="@+id/txtNumber"
+        android:layout_alignEnd="@+id/txtNumber" />
+
+    <ImageButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/imageButton4"
+        android:layout_alignBottom="@+id/imageButton3"
+        android:layout_alignRight="@+id/shareit"
+        android:layout_alignEnd="@+id/shareit"
+        android:src="@drawable/open_map"
+        android:background="@color/thisBlue" />
+>>>>>>> origin/lex2
 
 </RelativeLayout>
