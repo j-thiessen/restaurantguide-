@@ -72,16 +72,6 @@ public class SearchActivity extends AppCompatActivity implements View.OnClickLis
 
                         number = c.getString(c.getColumnIndexOrThrow((RestaurantContract.Restaurants.COLUMN_NAME_NUMBER)));
 
-<<<<<<< HEAD
-        DBHandler dbHelper = new DBHandler(this);
-        SQLiteDatabase db = dbHelper.getWritableDatabase();
-        Cursor searchCursor = db.rawQuery("SELECT * FROM restaurants WHERE name LIKE \'%" + searchTerm.getText() + "%\'", null);
-        ListView items = (ListView)findViewById(R.id.lvResults);
-        // the problem here is that the searchCursor needs to somehow be converted to an ArrayList
-     //   RestaurantAdapter restaurantCursorAdapter = new RestaurantAdapter(this, searchCursor);
-      //  items.setAdapter(restaurantCursorAdapter);
-     //   items.setOnItemClickListener(this);
-=======
                         description = c.getString(c.getColumnIndexOrThrow((RestaurantContract.Restaurants.COLUMN_NAME_DESCRIPTION)));
 
                         tags = c.getString(c.getColumnIndexOrThrow((RestaurantContract.Restaurants.COLUMN_NAME_TAGS)));
@@ -117,6 +107,5 @@ public class SearchActivity extends AppCompatActivity implements View.OnClickLis
                 //items.setOnItemClickListener(this);
                 break;
         }
->>>>>>> refs/remotes/origin/jordan3
     }
 }
