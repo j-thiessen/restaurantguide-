@@ -26,6 +26,12 @@
             android:textStyle="bold" />
 
 
+        <RatingBar
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/ratingBar2"
+            android:layout_gravity="center_horizontal" />
+
         <TextView
             android:layout_width="match_parent"
             android:layout_height="89dp"
@@ -108,28 +114,33 @@
         <LinearLayout
             android:orientation="horizontal"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:weightSum="1"
+            android:baselineAligned="false">
 
             <ImageButton
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/shareit"
                 android:src="@drawable/sharethis"
-                android:background="@color/thisBlue" />
+                android:background="@color/thisBlue"
+                android:layout_weight="0.11" />
 
             <ImageButton
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/imageButton2"
                 android:background="@color/thisBlue"
-                android:src="@drawable/twitter" />
+                android:src="@drawable/twitter"
+                android:layout_weight="0.11" />
 
             <ImageButton
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/facebook_btn"
                 android:src="@drawable/facebook"
-                android:background="@color/thisBlue" />
+                android:background="@color/thisBlue"
+                android:layout_weight="0.11" />
         </LinearLayout>
 
 
